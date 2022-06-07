@@ -1,0 +1,71 @@
+#:import webbrowser webbrowser 
+MainInterface:
+<MainInterface>:
+    canvas.before:
+        Color:  
+            rgb: 0.40, 0.50, 1,.01
+        Rectangle:
+            size: self.size
+            pos: self.pos   
+    MDBoxLayout:
+        orientation: 'vertical'
+        MDBoxLayout:
+            #orientation: 'vertical'
+            size_hint_y: .08
+            MDCard:
+                orientation: 'vertical'
+                size_hint: 1, None
+                pos_hint: {"center_x": .5, "center_y": .5}
+                height: dp(70)
+                #elevation: 15
+                radius: [20,0,0,20]
+                MDTextField:
+                    hint_text: 'Search'
+                    id: textfield
+                    on_text: root.search()
+                    size_hint_x: .8
+                    pos_hint: {'center_x': .5, 'center_y': .5}
+
+            MDCard:
+                orientation: 'vertical'
+                size_hint: 1, None
+                pos_hint: {"center_x": .5, "center_y": .5}
+                height: dp(70)
+                #elevation: 15
+                size_hint_x: .1
+                radius: [0,0,20,0]
+                MDIconButton:
+                    icon: 'source-repository'
+                    pos_hint: {"center_x": .5, "center_y": .5}
+                    halign: 'center'
+                    valign: 'center'
+                    on_press: webbrowser.open("https://youtu.be/F9J0OD8wFZo")
+
+
+        CustomRecycleView:
+            viewclass: 'ElementCard'
+            id: recycleview
+            RecycleGridLayout:
+                padding: dp(10)
+                spacing: dp(10)
+                cols: 2
+                default_size: None, dp(48)
+                default_size_hint: 1, None
+                size_hint_y:None
+                height: self.minimum_height
+<ElementCard>:
+    orientation: 'vertical'
+    size_hint: 1, None
+    pos_hint: {"center_x": .5, "center_y": .5}
+    height: dp(70)
+    elevation: 15
+    radius: 20
+    MDIcon:
+        icon: root.icon_to_display
+        halign: 'center'
+    MDLabel:
+        text: root.icon_to_display
+        halign: 'center'
+        font_style:"Caption"
+        theme_text_color:"Custom"
+        
